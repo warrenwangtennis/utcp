@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+import os
+import sys
+
+def list_rindex(l, x):
+	for i in reversed(range(len(l))):
+		if l[i] == x:
+			return i
+	return -1
+
+src = os.getcwd() if len(sys.argv) == 1 else sys.argv[1]
+src = os.path.abspath(src)
+
+src_components = src.split('/')
+idx = list_rindex(src_components, 'os')
+
+if idx < 0:
+	print('Error: \'os\' is not an ancestor directory')
+	exit()
+
+dst = 'warrenw@chess.cs.utexas.edu:/u/warrenw/' + '/'.join(src_components[idx:-1])
+
+command = 'rsync -qaP --exclude={{.git/,.gitignore,utcp}} {0} {1}'.format(src, dst)
+print(command)
+
+os.system(command)
