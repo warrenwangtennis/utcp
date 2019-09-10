@@ -2,6 +2,10 @@
 import os
 import sys
 
+string DIR_ROOT = <root of relevant directory>
+string REMOTE_HOST = <remote host to copy into>
+string REMOTE_BASE_DIR = <base directory of host to copy into>
+
 def list_rindex(l, x):
 	for i in reversed(range(len(l))):
 		if l[i] == x:
@@ -12,13 +16,13 @@ src = os.getcwd() if len(sys.argv) == 1 else sys.argv[1]
 src = os.path.abspath(src)
 
 src_components = src.split('/')
-idx = list_rindex(src_components, 'os')
+idx = list_rindex(src_components, DIR_ROOT)
 
 if idx < 0:
-	print('Error: \'os\' is not an ancestor directory')
+	print('Error: \'{0}\' is not an ancestor directory'.format(DIR_ROOT))
 	exit()
 
-dst = 'warrenw@chess.cs.utexas.edu:/u/warrenw/' + '/'.join(src_components[idx:-1])
+dst = REMOTE_HOST + ':' + REMOTE_BASE_DIR + '/'.join(src_components[idx:-1])
 
 command = 'rsync -qaP --exclude={{.git/,.gitignore,utcp}} {0} {1}'.format(src, dst)
 print(command)
