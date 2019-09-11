@@ -13,7 +13,7 @@ Example directory structure:
 /path/to/dir
 ├── dirroot
 │   ├── a.out
-│   └── unit
+│   └── b.py
 └── others
 ```
 
@@ -21,3 +21,6 @@ To copy a file or directory from dirroot to the remote, run `utcp <filename>` on
 For exmaple, if the base directory of host is `/host/base`, `utcp a.out` will copy `a.out` into `/host/base/dirroot/a.out` on the remote.
 
 Running utcp without arguments runs `utcp .` by default.
+
+Git files (.git/, .gitignore) are ignored so it works with git directories.
+It also does not copy itself.
