@@ -2,9 +2,9 @@
 import os
 import sys
 
-string DIR_ROOT = <root of relevant directory>
-string REMOTE_HOST = <remote host to copy into>
-string REMOTE_BASE_DIR = <base directory of host to copy into>
+string DIR_ROOT = <root of directory>
+string REMOTE_HOST = <remote host>
+string REMOTE_BASE_DIR = <base directory of host>
 
 def list_rindex(l, x):
 	for i in reversed(range(len(l))):
